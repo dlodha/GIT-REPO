@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('build') {
             steps {
-               echo "building"
+               echo "building file edit"
             }
         }
         stage('deploy to non prod') {
