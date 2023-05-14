@@ -1,5 +1,7 @@
 pipeline {
-    agent any
+    agent {
+       docker { image 'public.ecr.aws/docker/library/maven:latest' }
+       }
     parameters {
          choice(name:'ENVIRONMENT',
                 choices:['DEVELOPMENT','STAGING','PRODUCTION'],
@@ -8,6 +10,14 @@ pipeline {
        
      }
     stages {
+        stage('source') {
+            steps {
+	       sh 'mvn --version'
+	       sh 'git --version'
+               echo "building file edit"
+            }
+        }
+
         stage('build') {
             steps {
                echo "building file edit"
